@@ -1,0 +1,17 @@
+<!--pages/video/video.wxml-->
+<view class="video">
+  <block wx:for="{{topMVs}}" wx:key="id">
+    <view class="item">
+      <view class="album">
+        <image src="{{item.cover}}" alt=""/>
+        <view class="info">
+          <view class="count">{{item.playCount}}</view>
+          <view class="duration">{{item.mv.videos[0].duration}}</view>
+        </view>
+      </view>
+      <view class="content">
+        {{item.name}} - {{item.artistName}}
+      </view>
+    </view>
+  </block>
+</view>
