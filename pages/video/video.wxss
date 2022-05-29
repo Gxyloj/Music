@@ -1,1 +1,9 @@
-/* pages/video/video.wxss */
+.video{
+  display: flex;
+  flex-wrap: wrap; /*放不下的换行*/
+  justify-content: space-around; /*均匀排列每个元素 每个元素所占空间相等*/
+}
+
+.item{
+  width: 48%; /*限制组件大小比一半稍小*/
+}

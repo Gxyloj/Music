@@ -1,2 +1,7 @@
 <!--pages/home/home.wxml-->
-
+<van-search  input-align="center"
+             placeholder="搜索你喜欢的音乐"
+             background="#fafafa"
+             shape="round"
+             disabled
+             bind:click-input="handleSearchInput"/>
