@@ -6,3 +6,5 @@
              disabled
              bind:click-input="handleSearchInput"/>
 <text>测试</text>
+
+<text>试试推送</text>
