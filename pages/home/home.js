@@ -1,5 +1,11 @@
 // pages/home/home.js
+import {
+  getBanner
+} from '../../servies/api_music'
+import {querySelectRect} from '../../utils/querySelectRect'
+import {throttle} from '../../utils/throttle'
 
+const throttleQueryRect = throttle(querySelectRect,50)
 
 Page({
 
@@ -7,18 +13,31 @@ Page({
    * 页面的初始数据
    */
   data: {
+    bannerList: [],
+    swiperHeight: 0
   },
 
-  handleSearchInput(){
+  handleSearchInput() {
     wx.navigateTo({
       url: '/pages/detail-search/detail-search',
+    })
+  },
+  //轮播图片加载完成处理函数
+  handleSwiperImageLoaded() {
+    if (this.data.swiperHeight !== 0) return
+    throttleQueryRect('.swiper-image').then(res => {
+      const rect = res[0]
+      this.setData({swiperHeight:rect.height})
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    
+  onLoad: async function (options) {
+    const res = await getBanner()
+    this.setData({
+      bannerList: res.data.banners
+    })
   },
 
   /**
