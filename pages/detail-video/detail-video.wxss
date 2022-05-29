@@ -1,0 +1,36 @@
+/* pages/detail-video/detail-video.wxss */
+page{
+  padding-top: 450rpx;
+}
+
+.video {
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.info {
+    padding: 10rpx;
+    margin: 8rpx;
+    padding: 10rpx;
+}
+
+.title {
+    font-size: 36rpx;
+    font-weight: bold;
+}
+
+.artistName,
+.count {
+    color: #8b8889;
+    font-size: 28rpx;
+}
+
+.recommend {
+    margin-top: 10rpx;
+    padding: 15rpx;
+}
+
+.head-title {
+    padding: 10rpx;
+}
