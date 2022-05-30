@@ -1,23 +1,32 @@
 <!--pages/home/home.wxml-->
-<!-- 搜索框 -->
-<van-search  input-align="center"
-             placeholder="搜索你喜欢的音乐"
-             background="#fafafa"
-             shape="round"
-             disabled
-             bind:click-input="handleSearchInput"/>
-<!-- 轮播图 -->
-<swiper	class="swiper"
+  <!-- 搜索框 -->
+<van-search input-align="center"
+            placeholder="搜索你喜欢的音乐"
+            background="#fafafa"
+            shape="round"
+            disabled
+            bind:click-input="handleSearchInput"/>
+  <!-- 轮播图 -->
+<swiper class="swiper"
         style="height: {{swiperHeight}}px;"
-        indicator-dots 
+        indicator-dots
         autoplay
         circular>
   <block wx:for="{{bannerList}}" wx:key="1653740846090383">
     <swiper-item class="swiper-item">
-      <image class="swiper-image" 
-             src="{{item.pic}}" 
-             mode="widthFix" 
+      <image class="swiper-image"
+             src="{{item.pic}}"
+             mode="widthFix"
              bindload="handleSwiperImageLoaded"></image>
+
     </swiper-item>
   </block>
 </swiper>
+  <!--推荐歌曲-->
+<view class="recommend-song">
+  <area-header>
+<!--    <text>插槽</text>-->
+<!--    <button>+++++</button>-->
+  </area-header>
+</view>
+

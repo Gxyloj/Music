@@ -1,0 +1,19 @@
+# 项目里读 .editorconfig 文件时，读到此文件即可，不用继续往上搜索
+root = true
+
+[*.{js, wxml, wxss}]
+charset = utf-8
+max_line_length = 480
+
+# 2个空格缩进
+indent_style = space
+indent_size = 2
+
+# 去掉每行代码最后多余的空格
+trim_trailing_whitespace = true
+
+# 保存文件时，在最后一行后加上一行空行
+insert_final_newline = false
+
+# In function expression
+ij_javascript_space_before_function_left_parenth = false

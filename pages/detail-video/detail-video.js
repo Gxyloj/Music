@@ -33,7 +33,7 @@ Page({
   onLoad(options) {
     const id = options.id
     this.getPageData(id)
-    
+
   },
 
   /**

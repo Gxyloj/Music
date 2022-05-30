@@ -5,7 +5,7 @@ import {
 import {querySelectRect} from '../../utils/querySelectRect'
 import {throttle} from '../../utils/throttle'
 
-const throttleQueryRect = throttle(querySelectRect,50)
+const throttleQueryRect = throttle(querySelectRect, 50)
 
 Page({
 
@@ -18,6 +18,7 @@ Page({
   },
 
   handleSearchInput() {
+
     wx.navigateTo({
       url: '/pages/detail-search/detail-search',
     })
@@ -27,7 +28,7 @@ Page({
     if (this.data.swiperHeight !== 0) return
     throttleQueryRect('.swiper-image').then(res => {
       const rect = res[0]
-      this.setData({swiperHeight:rect.height})
+      this.setData({swiperHeight: rect.height})
     })
   },
   /**
