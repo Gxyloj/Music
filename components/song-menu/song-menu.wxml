@@ -1,0 +1,9 @@
+<area-header title="推荐歌单"></area-header>
+<!--<scroll-view scroll-x class="menu-list" style="width:{{screenWidth}}px">-->
+<scroll-view scroll-x class="menu-list">
+  <block wx:for="{{songMenu}}" wx:key="*this">
+    <view class="menu-item">
+      <song-meun-item item="{{item}}"></song-meun-item>
+    </view>
+  </block>
+</scroll-view>

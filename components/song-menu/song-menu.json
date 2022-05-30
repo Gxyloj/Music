@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "area-header": "/components/area-header/area-header",
+    "song-menu-item": "/components/song-meun-item/song-meun-item",
+    "song-meun-item": "/components/song-meun-item/song-meun-item"
+  }
+}

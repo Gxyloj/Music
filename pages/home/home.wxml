@@ -23,16 +23,15 @@
   </block>
 </swiper>
   <!--推荐歌曲-->
-<view class="recommend-song">
-  <area-header>
-<!--    <text>插槽</text>-->
-<!--    <button>+++++</button>-->
-  </area-header>
-
-  <view class="song-list">
-    <block wx:for="{{personalizedNewSong}}" wx:key="id">
-      <song-item-v1 item="{{item}}"></song-item-v1>
-    </block>
-  </view>
-</view>
+<!--<view class="recommend-song">-->
+<!--  <area-header title="推荐歌曲">-->
+<!--  </area-header>-->
+<!--  <view class="song-list">-->
+<!--    <block wx:for="{{personalizedNewSong}}" wx:key="id">-->
+<!--      <song-item-v1 item="{{item}}"></song-item-v1>-->
+<!--    </block>-->
+<!--  </view>-->
+<!--</view>-->
+<!--推荐歌单-->
+<song-menu songMenu="{{recommendSongMenu}}"></song-menu>
 

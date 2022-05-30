@@ -1,10 +1,11 @@
 // pages/home/home.js
 import {
-  getBanner, getPersonalizedNewSong
+  getBanner, getPersonalizedNewSong, getSongMenu
 } from '../../servies/api_music'
 import {querySelectRect} from '../../utils/querySelectRect'
 import {throttle} from '../../utils/throttle'
 import {rankingStore} from "../../store/index";
+
 const throttleQueryRect = throttle(querySelectRect, 50)
 
 Page({
@@ -15,7 +16,8 @@ Page({
   data: {
     bannerList: [],
     swiperHeight: 0,
-    personalizedNewSong:{}
+    personalizedNewSong: {},
+    recommendSongMenu:[]
   },
 
   handleSearchInput() {
@@ -35,65 +37,66 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: async function (options) {
+  onLoad: async function(options) {
     const res = await getBanner()
     this.setData({
       bannerList: res.data.banners
     })
     // rankingStore.dispatch('getRankingDataAction')  //换用推荐新音乐
     getPersonalizedNewSong(5).then(res => {
-      // console.log(res.data.result);
-      this.setData({personalizedNewSong:res.data.result.splice(5)})
-      console.log(this.data.personalizedNewSong)
+      this.setData({personalizedNewSong: res.data.result.splice(5)})
+    })
+    getSongMenu().then(res => {
+      this.setData({recommendSongMenu:res.data.playlists})
     })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

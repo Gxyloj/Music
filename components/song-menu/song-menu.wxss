@@ -1,0 +1,21 @@
+.menu-list{
+  position: relative;
+  left: -20rpx;
+  width: 100vw;
+  white-space: nowrap;
+}
+
+.menu-item{
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 20rpx;
+  width: 220rpx;
+  /*height: 240rpx;*/
+}
+
+/*.menu-item:first-child{*/
+/*  margin-left: 0;*/
+/*}*/
+.menu-item:last-child{
+  margin-right: 20rpx;
+}
