@@ -1,0 +1,33 @@
+.item{
+  display: flex;
+  margin-bottom: 20rpx;
+  align-items: center;
+}
+
+.image{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 14rpx;
+  overflow: hidden;
+}
+
+.content{
+  flex: 1;
+  margin-left: 16rpx;
+}
+
+.content .name {
+  font-size: 32rpx;
+  color: #000;
+}
+
+.content .source {
+  margin-top: 2px;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.icon{
+  width: 45rpx;
+  height: 45rpx;
+}

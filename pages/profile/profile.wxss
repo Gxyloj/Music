@@ -1,0 +1,19 @@
+page{
+  padding: 20rpx;
+  box-sizing: border-box;
+  background-color: #555;
+}
+
+.loginForm{
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+.loginButton{
+  text-align: center;
+  width: 100% ;
+  margin-top: 20rpx;
+}
+
+.van-button{
+  width: 80% !important;
+}

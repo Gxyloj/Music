@@ -28,5 +28,11 @@
 <!--    <text>插槽</text>-->
 <!--    <button>+++++</button>-->
   </area-header>
+
+  <view class="song-list">
+    <block wx:for="{{personalizedNewSong}}" wx:key="id">
+      <song-item-v1 item="{{item}}"></song-item-v1>
+    </block>
+  </view>
 </view>
 

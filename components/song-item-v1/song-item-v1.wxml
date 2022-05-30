@@ -1,0 +1,10 @@
+<view class="item">
+  <image class="image" src="{{item.picUrl}}"></image>
+  <view class="content">
+    <view class="name">{{item.name}}</view>
+    <view class="source">{{item.song.artists[0].name}} · {{item.song.album.name}}</view>
+  </view>
+  <view class="arrow">
+    <image class="icon" src="/assets/images/icons/arrow-right.png"></image>
+  </view>
+</view>

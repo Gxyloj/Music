@@ -12,6 +12,13 @@
           "query": "id=14527441",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/profile/profile",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

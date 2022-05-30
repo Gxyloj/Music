@@ -1,10 +1,10 @@
 // pages/home/home.js
 import {
-  getBanner
+  getBanner, getPersonalizedNewSong
 } from '../../servies/api_music'
 import {querySelectRect} from '../../utils/querySelectRect'
 import {throttle} from '../../utils/throttle'
-
+import {rankingStore} from "../../store/index";
 const throttleQueryRect = throttle(querySelectRect, 50)
 
 Page({
@@ -14,7 +14,8 @@ Page({
    */
   data: {
     bannerList: [],
-    swiperHeight: 0
+    swiperHeight: 0,
+    personalizedNewSong:{}
   },
 
   handleSearchInput() {
@@ -38,6 +39,12 @@ Page({
     const res = await getBanner()
     this.setData({
       bannerList: res.data.banners
+    })
+    // rankingStore.dispatch('getRankingDataAction')  //换用推荐新音乐
+    getPersonalizedNewSong(5).then(res => {
+      // console.log(res.data.result);
+      this.setData({personalizedNewSong:res.data.result.splice(5)})
+      console.log(this.data.personalizedNewSong)
     })
   },
 
