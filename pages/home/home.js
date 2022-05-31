@@ -17,7 +17,8 @@ Page({
     bannerList: [],
     swiperHeight: 0,
     personalizedNewSong: {},
-    recommendSongMenu:[]
+    recommendSongMenu:[],
+    hotSongMenu:[]
   },
 
   handleSearchInput() {
@@ -46,8 +47,13 @@ Page({
     getPersonalizedNewSong(5).then(res => {
       this.setData({personalizedNewSong: res.data.result.splice(5)})
     })
+    //获取推荐歌单 cat=全部
     getSongMenu().then(res => {
       this.setData({recommendSongMenu:res.data.playlists})
+    })
+    //获取热门歌单 cat=华语
+    getSongMenu('华语').then(res => {
+      this.setData({hotSongMenu:res.data.playlists})
     })
   },
 

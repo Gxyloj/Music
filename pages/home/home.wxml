@@ -33,5 +33,7 @@
 <!--  </view>-->
 <!--</view>-->
 <!--推荐歌单-->
-<song-menu songMenu="{{recommendSongMenu}}"></song-menu>
+<song-menu title="推荐歌单" songMenu="{{recommendSongMenu}}"></song-menu>
+<!--热门歌单-->
+<song-menu title="热门歌单" songMenu="{{hotSongMenu}}"></song-menu>
 
