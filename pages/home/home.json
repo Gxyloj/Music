@@ -4,6 +4,9 @@
     "area-header": "/components/area-header/area-header",
     "song-item-v1": "/components/song-item-v1/song-item-v1",
     "song-menu": "/components/song-menu/song-menu",
-    "song-menu": "/components/song-menu/song-menu"
+    "song-menu": "/components/song-menu/song-menu",
+    "area-header": "/components/area-header/area-header",
+    "ranking-area-item": "/components/ranking-area-item/ranking-area-item",
+    "ranking-area-item": "/components/ranking-area-item/ranking-area-item"
   }
 }

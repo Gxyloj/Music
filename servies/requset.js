@@ -7,6 +7,9 @@ class MusicRequest{
         url: BASE_URL + url,
         method:method,
         data:params,
+        header:{
+          "cookie":"NMTID=00OikdfwZRockz0OUD1oOR7ca0f-owAAAGBGRgEtw;"//临时cookie
+        },
         success:res => {
           resolve(res)
         },
@@ -16,7 +19,7 @@ class MusicRequest{
       })
     })
 
-    
+
   }
   get(url,params){
     return this.request(url,'GET',params)

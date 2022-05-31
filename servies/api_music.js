@@ -6,12 +6,12 @@ export function getBanner() {
   })
 }
 
-export function getRankings(idx) {
-  return OJRequest.get('/top/list', {
-    idx
-  })
-}
 
+// export function getRankings(idx) {
+//   return OJRequest.get('/top/list', {
+//     idx
+//   })
+// }
 //上方的获取热门列表需要登录
 //首页第一个列表换成推荐新音乐
 
@@ -26,5 +26,15 @@ export function getSongMenu(cat = '全部', limit = 6, offset = 0) {
     cat,
     limit,
     offset
+  })
+}
+//获取全部榜单
+export function getAllTopList(){
+  return OJRequest.get('/toplist')
+}
+//获取具体榜单
+export function getRanking(id){
+  return OJRequest.get('/playlist/detail',{
+    id
   })
 }

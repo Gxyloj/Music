@@ -1,0 +1,11 @@
+<view class="item">
+  <view class="info">
+    <view class="title">{{item.name}}</view>
+    <block wx:for="{{item.songList}}" wx:key="id">
+            <view class="song">{{index+1}}.{{item.name}} - {{item.ar[0].name}}·{{item.ar[1].name}}</view>
+    </block>
+  </view>
+  <view class="album">
+    <image class="image" src="{{item.coverImgUrl}}" mode="heightFix"></image>
+  </view>
+</view>

@@ -1,0 +1,33 @@
+.item {
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow:  20px 20px 60px #bebebe,
+  -20px -20px 60px #ffffff;
+  overflow: hidden;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  height: 280rpx;
+}
+
+.info {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding-left: 10rpx;
+}
+
+.title {
+  font-size: 30rpx;
+  margin-left: 20rpx;
+  font-weight: 550;
+}
+
+.song{
+  padding-left: 10rpx;
+  font-size: 24rpx;
+}
+
+.image {
+  height: 100%;
+}
