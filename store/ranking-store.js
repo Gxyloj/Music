@@ -80,16 +80,16 @@ const rankingStore = new HYEventStore({
       })
       //请求4个榜单的数据
 
-        await getRanking(ctx.upRankingID).then(res => {
+        getRanking(ctx.upRankingID).then(res => {
           ctx.upRankingList = res.data.playlist
         })
-        await getRanking(ctx.newRankingID).then(res => {
+        getRanking(ctx.newRankingID).then(res => {
           ctx.newRankingList = res.data.playlist
         })
-        await getRanking(ctx.originalRankingID).then(res => {
+         getRanking(ctx.originalRankingID).then(res => {
           ctx.originalRankingList = res.data.playlist
         })
-        await getRanking(ctx.hotRankingID).then(res => {
+        getRanking(ctx.hotRankingID).then(res => {
           ctx.hotRankingList = res.data.playlist
         })
     }

@@ -10,16 +10,16 @@ const throttleQueryRect = throttle(querySelectRect, 50)
 
 Page({
 
-  /**
+   /**
    * 页面的初始数据
    */
   data: {
     bannerList: [],
     swiperHeight: 0,
-    personalizedNewSong: {},
+    personalizedNewList: {},
     recommendSongMenu: [],
     hotSongMenu: [],
-    rankingList: {0:{},1:{},2:{}}
+    rankingList: {0: {}, 1: {}, 2: {},3:{}}
   },
 
   handleSearchInput() {
@@ -44,14 +44,27 @@ Page({
       let newRankingList = {
         name: res.name,
         coverImgUrl: res.coverImgUrl,
-        playCount:res.playCount,
-        songList: res.tracks.slice(0, 3),
+        playCount: res.playCount,
+        songList: id === 3 ? res.tracks.slice(0, 5) : res.tracks.slice(0, 3)
       }
-      let originRanking = {...this.data.rankingList,[id]:newRankingList}
+      let originRanking = {...this.data.rankingList, [id]: newRankingList}
       this.setData({rankingList: originRanking})
     }
 
 
+  },
+  navigateToDetailSongPage(rankingName){
+    wx.navigateTo({
+      url:`/pages/detail-songs/detail-songs?rankingName=${rankingName}`
+    })
+  },
+  handleMoreClick() {
+    this.navigateToDetailSongPage('hotRankingList')
+  },
+  handleRankingClick(e) {
+    const id = e.currentTarget.dataset.id
+    const rankingName = id === '0' ? 'newRankingList' : id === '1' ? 'originalRankingList' : 'upRankingList'
+    this.navigateToDetailSongPage(rankingName)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -60,13 +73,14 @@ Page({
     rankingStore.onState('newRankingList', this.getNewRankingList(0))
     rankingStore.onState('originalRankingList', this.getNewRankingList(1))
     rankingStore.onState('upRankingList', this.getNewRankingList(2))
+    rankingStore.onState('hotRankingList', this.getNewRankingList(3))
     const res = await getBanner()
     this.setData({
       bannerList: res.data.banners
     })
     // rankingStore.dispatch('getRankingDataAction')  //换用推荐新音乐
     getPersonalizedNewSong(5).then(res => {
-      this.setData({personalizedNewSong: res.data.result.splice(5)})
+      this.setData({personalizedNewList: res.data.result.splice(5)})
     })
     //获取推荐歌单 cat=全部
     getSongMenu().then(res => {

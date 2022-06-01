@@ -1,8 +1,9 @@
+<!--首页推荐歌曲的列表  封面 歌曲名 歌手名-专辑  右箭头-->
 <view class="item">
-  <image class="image" src="{{item.picUrl}}"></image>
+  <image class="image" src="{{item.al.picUrl}}"></image>
   <view class="content">
     <view class="name">{{item.name}}</view>
-    <view class="source">{{item.song.artists[0].name}} · {{item.song.album.name}}</view>
+    <view class="source">{{item.ar[0].name}} · {{item.al.name}}</view>
   </view>
   <view class="arrow">
     <image class="icon" src="/assets/images/icons/arrow-right.png"></image>

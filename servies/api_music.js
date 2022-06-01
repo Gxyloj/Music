@@ -30,7 +30,7 @@ export function getSongMenu(cat = '全部', limit = 6, offset = 0) {
 }
 //获取全部榜单
 export function getAllTopList(){
-  return OJRequest.get('/toplist')
+    return OJRequest.get('/toplist')
 }
 //获取具体榜单
 export function getRanking(id){

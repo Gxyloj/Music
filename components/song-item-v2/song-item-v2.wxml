@@ -1,0 +1,10 @@
+<view class="item">
+  <view class="index">{{index + 1}}</view>
+  <view class="content">
+    <view class="name">{{item.name}}</view>
+    <view class="source">
+      <image class="image" src="/assets/images/icons/sq_icon.png" mode="widthFix"></image>
+      <view class="info">{{item.ar[0].name}}  ·  {{item.al.name}}</view>
+    </view>
+  </view>
+</view>

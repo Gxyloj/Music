@@ -1,0 +1,6 @@
+<area-header title="{{rankingList.name}}" showRight="{{false}}"></area-header>
+<view class="song-list">
+  <block wx:for="{{rankingList.tracks}}">
+    <song-item-v2 item="{{item}}" index="{{index}}"></song-item-v2>
+  </block>
+</view>

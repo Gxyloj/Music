@@ -1,18 +1,22 @@
 Component({
   properties: {
-    title:{
-      type:String,
-      value:'默认标题'
+    title: {
+      type: String,
+      value: '默认标题'
     },
-    rightText:{
-      type:String,
-      value:'更多'
+    rightText: {
+      type: String,
+      value: '更多'
     },
-    showRight:{
-      type:Boolean,
-      value:true
+    showRight: {
+      type: Boolean,
+      value: true
     }
   },
   data: {},
-  methods: {}
+  methods: {
+    handleRightClick() {
+      this.triggerEvent('click')
+    }
+  }
 });
