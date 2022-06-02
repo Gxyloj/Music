@@ -1,3 +1,4 @@
+<!--歌曲列表-->
 <area-header title="{{title}}"></area-header>
 <!--<scroll-view scroll-x class="menu-list" style="width:{{screenWidth}}px">-->
 <scroll-view scroll-x class="menu-list">

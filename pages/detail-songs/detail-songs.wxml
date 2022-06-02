@@ -1,4 +1,5 @@
 <!--排行榜页面的页头-->
+<wxs src="/utils/format.wxs" module="format"></wxs>
 <block wx:if="{{type === 'ranking'}}">
   <area-header title="{{songsList.name}}" showRight="{{false}}"></area-header>
 </block>
@@ -27,11 +28,11 @@
     </view>
     <!--    下方操作-->
     <view class="operation">
-      <view class="subscribed">
+      <view class="subscribed item">
         <image src="/assets/images/icons/favor_icon.png" mode="widthFix"></image>
-        <text>{{songsList.subscribedCount}}</text>
+        <text>{{format.formatCount(songsList.subscribedCount)}}</text>
       </view>
-      <view class="share">
+      <view class="share item">
         <image src="/assets/images/icons/share_icon.png" mode="widthFix"></image>
         <text>分享</text>
       </view>

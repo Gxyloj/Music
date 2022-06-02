@@ -100,8 +100,23 @@ page {
   justify-content: space-around;
   align-items: center;
   margin: auto 0;
+  font-size: 30rpx;
+}
+
+.operation .item{
+  display: flex;
+  align-items: center;
 }
 
 .operation image {
   width: 40rpx;
+  margin-right: 6rpx;
+}
+
+.subscribed{
+  align-items: center;
+}
+
+.share{
+  align-items: center;
 }
