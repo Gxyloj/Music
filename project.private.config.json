@@ -26,6 +26,13 @@
           "query": "id=2639603847&type=menu",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "歌单详情",
+          "pathName": "pages/detail-menu/detail-menu",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

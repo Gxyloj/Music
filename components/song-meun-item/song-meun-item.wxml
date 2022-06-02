@@ -1,3 +1,4 @@
+<!--封面 下方是name 带播放量-->
 <wxs src="../../utils/format.wxs" module="format"></wxs>
 <view class="item">
   <view class="album">

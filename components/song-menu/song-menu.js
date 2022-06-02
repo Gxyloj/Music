@@ -14,10 +14,15 @@ Component({
     screenWidth: app.globalData.screenWidth
   },
   methods: {
+    handleMoreMenuClick() {
+      wx.navigateTo({
+        url:`/pages/detail-menu/detail-menu`
+      })
+    },
     handleMenuItemClick(e) {
       const item = e.currentTarget.dataset.item
       wx.navigateTo({
-        url:`/pages/detail-songs/detail-songs?id=${item.id}&type=menu`
+        url: `/pages/detail-songs/detail-songs?id=${item.id}&type=menu`
       })
     }
   }

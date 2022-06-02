@@ -21,7 +21,7 @@ export function getPersonalizedNewSong(limit = 10) {
   })
 }
 
-export function getSongMenu(cat = '全部', limit = 6, offset = 0) {
+export function getSongMenu(cat = '全部', limit = 8, offset = 0) {
   return OJRequest.get('/top/playlist', {
     cat,
     limit,
@@ -43,4 +43,9 @@ export function getSongMenuDetail(id){
   return OJRequest.get('/playlist/detail/dynamic',{
     id
   })
+}
+
+//获取热门歌单的分类tag和id
+export function getHotPlayList(){
+  return OJRequest.get('/playlist/hot')
 }

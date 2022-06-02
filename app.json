@@ -5,7 +5,8 @@
     "pages/profile/profile",
     "pages/detail-video/detail-video",
     "pages/detail-search/detail-search",
-    "pages/detail-songs/detail-songs"
+    "pages/detail-songs/detail-songs",
+    "pages/detail-menu/detail-menu"
   ],
   "window": {
     "backgroundTextStyle": "light",
