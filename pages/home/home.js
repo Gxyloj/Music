@@ -55,7 +55,7 @@ Page({
   },
   navigateToDetailSongPage(rankingName){
     wx.navigateTo({
-      url:`/pages/detail-songs/detail-songs?rankingName=${rankingName}`
+      url:`/pages/detail-songs/detail-songs?rankingName=${rankingName}&type=ranking`
     })
   },
   handleMoreClick() {

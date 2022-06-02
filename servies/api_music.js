@@ -38,3 +38,9 @@ export function getRanking(id){
     id
   })
 }
+//获取歌单详情数据
+export function getSongMenuDetail(id){
+  return OJRequest.get('/playlist/detail/dynamic',{
+    id
+  })
+}

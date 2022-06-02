@@ -1,3 +1,107 @@
-page{
+page {
   padding: 20rpx;
+}
+
+.header {
+  width: 100vw;
+  position: relative;
+  left: -20rpx;
+  display: flex;
+  flex-direction: column;
+  height: 450rpx;
+  color: #fff;
+  /*align-items: center;*/
+  /*justify-content: center;*/
+}
+
+.header .bg-image {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.bg-image-image {
+  width: 100%;
+}
+
+.header .bg-cover {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  backdrop-filter: blur(5px);
+}
+
+.content {
+  display: flex;
+  margin: auto 50rpx;
+  align-items: center;
+  font-size: 26rpx;
+}
+
+
+.album {
+  width: 240rpx;
+  /*!*height: 100%;*!*/
+  /*width: 240rpx !important;*/
+  /*height: 240rpx !important;*/
+  border-radius: 12rpx;
+  overflow: hidden;
+  margin-right: 35rpx;
+}
+
+.info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+
+.creator {
+  display: flex;
+  align-items: center;
+}
+
+.creator text {
+  margin-left: 10rpx;
+}
+
+.signature {
+  /* 显示两行 多出来的省略号*/
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -moz-box;
+  -moz-line-clamp: 1;
+  -moz-box-orient: vertical;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+  overflow: hidden;
+}
+
+.creator image {
+  width: 50rpx;
+  border-radius: 50rpx;
+  overflow: hidden;
+}
+
+.operation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto 0;
+}
+
+.operation image {
+  width: 40rpx;
 }

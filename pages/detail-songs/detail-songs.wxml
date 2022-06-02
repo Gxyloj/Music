@@ -1,6 +1,46 @@
-<area-header title="{{rankingList.name}}" showRight="{{false}}"></area-header>
+<!--排行榜页面的页头-->
+<block wx:if="{{type === 'ranking'}}">
+  <area-header title="{{songsList.name}}" showRight="{{false}}"></area-header>
+</block>
+  <!--歌单详情的页头-->
+<block wx:elif="{{type === 'menu'}}">
+  <view class="header">
+    <!--    背景图 背景模糊覆盖层-->
+    <view class="bg-image">
+      <image class="bg-image-image" mode="aspectFill" src="{{songsList.backgroundCoverUrl ? songsList.backgroundCoverUrl :songsList.coverImgUrl}}"></image>
+    </view>
+    <view class="bg-cover"></view>
+    <!--    内容-->
+    <view class="content">
+      <!--      图片外面包一个view 不然宽高会计算错误-->
+      <view>
+        <image class="album" src="{{songsList.coverImgUrl}}" mode="widthFix"></image>
+      </view>
+      <view class="info">
+        <view class="title">{{songsList.name}}</view>
+        <view class="creator">
+          <image src="{{songsList.creator.avatarUrl}}" mode="widthFix"></image>
+          <text>{{songsList.creator.nickname}}</text>
+        </view>
+        <view class="signature">简介：{{songsList.creator.signature}}</view>
+      </view>
+    </view>
+    <!--    下方操作-->
+    <view class="operation">
+      <view class="subscribed">
+        <image src="/assets/images/icons/favor_icon.png" mode="widthFix"></image>
+        <text>{{songsList.subscribedCount}}</text>
+      </view>
+      <view class="share">
+        <image src="/assets/images/icons/share_icon.png" mode="widthFix"></image>
+        <text>分享</text>
+      </view>
+    </view>
+  </view>
+</block>
+
 <view class="song-list">
-  <block wx:for="{{rankingList.tracks}}">
+  <block wx:for="{{songsList.tracks}}" wx:key="id">
     <song-item-v2 item="{{item}}" index="{{index}}"></song-item-v2>
   </block>
 </view>
