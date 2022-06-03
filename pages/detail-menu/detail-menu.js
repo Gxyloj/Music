@@ -13,7 +13,7 @@ Page({
       this.setData({menuList: originMenuList})
     })
   },
-  handleGoDetail(e){
+  handleGoDetail(e) {
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: `/pages/detail-songs/detail-songs?id=${id}&type=menu`
@@ -34,6 +34,7 @@ Page({
   },
   onReachBottom() {
     //拉到底 获取下一个tag的数据
+    if (this.data.index === 10) return
     this.getMoreMenu()
   }
 });

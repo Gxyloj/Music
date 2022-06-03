@@ -1,4 +1,52 @@
 /* pages/detail-search/detail-search.wxss */
-.van-search__content{
+page {
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.van-search {
+  padding: 20rpx 0 !important;
+
+}
+
+.van-search__content {
   background-color: #fff !important;
+}
+
+.tag {
+  padding: 14rpx 20rpx;
+  display: inline-block;
+  margin:8rpx;
+  background-color: #fff;
+  border-radius: 28rpx;
+  font-size: 28rpx;
+}
+
+.tag:first-child{
+  color: #26ce8a;
+}
+
+.title{
+  font-weight: 700;
+  color: #26ce8a;
+}
+.match{
+  font-weight: 750;
+  color: #26ce8a;
+}
+
+.item{
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  margin-top: 8rpx;
+}
+
+.icon{
+  width: 66rpx;
+  margin-right: 10rpx;
+}
+
+.item text{
+  margin: auto 0;
 }

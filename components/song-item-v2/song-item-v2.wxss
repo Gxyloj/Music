@@ -24,5 +24,10 @@
 .info {
   font-size: 24rpx;
   color: #666;
+}
+
+.album-name{
+  font-size: 24rpx;
+  color: #666;
   white-space: pre-wrap;
 }
