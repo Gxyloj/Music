@@ -1,0 +1,50 @@
+.status {
+
+}
+/*基础布局*/
+.nav-bar {
+  display: flex;
+  /*text-align: center;*/
+  justify-content: space-between;
+}
+
+
+.left, .right {
+  display: flex;
+  align-items: center;
+  /*TODO ???*/
+  justify-content: center;
+  width: 120rpx;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*flex: 1;*/
+}
+
+.left .left-arrow {
+  align-items: center;
+  justify-items: center;
+}
+
+.left .left-arrow .icon {
+  width: 30rpx;
+  display: block;
+}
+/*控制left插槽*/
+.left-arrow{
+  display: none;
+}
+
+.left-slot:empty + .left-arrow{
+  display: flex;
+}
+/*控制center插槽*/
+.center-title{
+  display: none;
+}
+.center-slot:empty + .center-title{
+  display: block;
+}

@@ -21,10 +21,14 @@ Page({
     //
     if (!searchValue) {
       this.setData({suggestResult: []})
+      debounceGetSearchSuggest.cancel()
       return
     }
     //请求搜索建议
     debounceGetSearchSuggest(searchValue).then(res => {
+
+      // if (!this.data.searchValue.length) return
+
       const suggestResult = res.data.result.allMatch
       //转成node节点
       //把结果取出来放到一个suggestKeywords数组里

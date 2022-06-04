@@ -1,0 +1,22 @@
+<view class="nav">
+  <view class="status" style="height:{{statusBarHeight}}px"></view>
+  <!--  胶囊跟状态栏之间有间距-->
+  <!--  navBar的高度:胶囊的高度  + ((胶囊的top-状态栏高度) * 2)-->
+  <view class="nav-bar" style="height:{{menuButtonRect.height + ((menuButtonRect.top - statusBarHeight)*2)}}px">
+    <view class="left">
+      <view class="left-slot">
+        <slot name="left"></slot>
+      </view>
+      <view class="left-arrow">
+        <image class="icon" style="width:{{menuButtonHeight - 8}}px" src="/assets/images/icons/arrow-left.png" mode="widthFix"></image>
+      </view>
+    </view>
+    <view class="center">
+      <view class="center-slot">
+        <slot name="center"></slot>
+      </view>
+      <view class="center-title">{{title}}</view>
+    </view>
+    <view class="right"></view>
+  </view>
+</view>

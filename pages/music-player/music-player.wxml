@@ -1,0 +1,56 @@
+<!--背景-->
+<image class="bg-image" mode="aspectFill" src="{{songDetail[0].al.picUrl}}"></image>
+  <!--模糊-->
+<view class="bg-cover"></view>
+
+  <!--导航-->
+<nav-bar id="nav-bar">
+  <view class="tab" slot="center">
+    <view class="{{currentPage === 0 ? 'active' : ''}}">歌曲</view>
+    <view>|</view>
+    <view class="{{currentPage === 1 ? 'active' : ''}}">歌词</view>
+  </view>
+</nav-bar>
+
+  <!--具体内容-->
+<swiper class="content"
+        style="height:{{contentHeight}}px"
+        bind:change="handleSwiperChange">
+  <!--  歌曲页面-->
+  <swiper-item class="music">
+    <view class="album">
+      <image class="image" mode="widthFix" src="{{songDetail[0].al.picUrl}}"></image>
+    </view>
+    <view class="info" style="padding-left:{{infoPaddingLeft}}px">
+      <!--      第一行-->
+      <view class="title">{{songDetail[0].name}}</view>
+      <view class="source">
+        <!--        第二行-->
+        <view class="artist">
+          {{songDetail[0].ar[0].name}}
+          <block wx:for="{{songDetail[0].ar}}" wx:if="{{index > 0}}">
+            <text class="artists"> · {{item.name}}</text>
+          </block>
+        </view>
+        <!--        第三行-->
+        <view class="collection">专辑：《{{songDetail[0].alia[0] || songDetail[0].al.name}}》</view>
+      </view>
+    </view>
+    <view class="lyric">我是歌词</view>
+    <view class="progress">
+      <slider block-size="15"></slider>
+      <view class="current">01:22</view>
+      <view class="duration">04:33</view>
+    </view>
+    <view class="operation">
+      <image class="btn btn-mode" src="/assets/images/player/play_order.png"></image>
+      <image class="btn btn-prev" src="/assets/images/player/play_prev.png"></image>
+      <image class="btn btn-pause" src="/assets/images/player/play_pause.png"></image>
+      <image class="btn btn-next" src="/assets/images/player/play_next.png"></image>
+      <image class="btn btn-list" src="/assets/images/player/play_music.png"></image>
+    </view>
+  </swiper-item>
+  <swiper-item class="lyric">
+
+  </swiper-item>
+</swiper>

@@ -1,0 +1,116 @@
+page {
+  color: #fff;
+}
+
+
+.bg-image, .bg-cover {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.bg-cover {
+  background-color: rgba(0, 0, 0, .5);
+  backdrop-filter: blur(40rpx);
+}
+
+.tab {
+  display: flex;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.tab view {
+  margin-right: 10rpx;
+}
+
+.active {
+  color: #fff;
+}
+
+
+/*主体部分*/
+
+.music {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100vw;
+  padding: 40rpx 20rpx;
+  padding-bottom: 48rpx;
+  box-sizing: border-box;
+}
+
+/*不知道支不支持*/
+/*@supports (padding-bottom: constant(safe-area-inset-bottom)) or (padding-bottom: env(safe-area-inset-bottom)) {*/
+/*  .music {*/
+/*    padding-bottom: constant(safe-area-inset-bottom);*/
+/*    padding-bottom: env(safe-area-inset-bottom);*/
+/*  }*/
+/*}*/
+
+.album{
+  display: flex;
+  justify-content: center;
+}
+
+.album .image{
+  width: 88%;
+}
+
+.info{
+  padding: 16rpx 0;
+}
+
+.info .title{
+  font-size: 50rpx;
+  margin-bottom: 30rpx;
+}
+
+.info .source{
+  font-size: 28rpx;
+}
+
+.info .collection{
+  margin-top: 30rpx;
+}
+
+.lyric{
+  display: flex;
+  flex: 0.35;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress{
+  position: relative;
+  font-size: 26rpx;
+}
+
+.progress .current,.duration{
+  position: absolute;
+  bottom: -8px;
+}
+
+.progress .current{
+  left: 16px;
+}
+.progress .duration{
+  right: 18px;
+}
+
+
+.operation{
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+.btn{
+  width: 88rpx;
+  height: 88rpx;
+}

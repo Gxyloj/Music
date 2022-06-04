@@ -79,19 +79,19 @@ const rankingStore = new HYEventStore({
         )
       })
       //请求4个榜单的数据
+      getRanking(ctx.hotRankingID).then(res => {
+        ctx.hotRankingList = res.data.playlist
+      })
+      getRanking(ctx.upRankingID).then(res => {
+        ctx.upRankingList = res.data.playlist
+      })
+      getRanking(ctx.newRankingID).then(res => {
+        ctx.newRankingList = res.data.playlist
+      })
+      getRanking(ctx.originalRankingID).then(res => {
+        ctx.originalRankingList = res.data.playlist
+      })
 
-        getRanking(ctx.upRankingID).then(res => {
-          ctx.upRankingList = res.data.playlist
-        })
-        getRanking(ctx.newRankingID).then(res => {
-          ctx.newRankingList = res.data.playlist
-        })
-         getRanking(ctx.originalRankingID).then(res => {
-          ctx.originalRankingList = res.data.playlist
-        })
-        getRanking(ctx.hotRankingID).then(res => {
-          ctx.hotRankingList = res.data.playlist
-        })
     }
   }
 })

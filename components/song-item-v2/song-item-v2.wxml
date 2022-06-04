@@ -1,12 +1,12 @@
 <!--列表index  歌曲名 歌手 专辑-->
-<view class="item">
+<view class="item" bind:tap="handleSongItemClick" data-id="{{item.id}}">
   <view class="index">{{index + 1}}</view>
   <view class="content">
     <view class="name">{{item.name}}</view>
     <view class="source">
       <image class="image" src="/assets/images/icons/sq_icon.png" mode="widthFix"></image>
       <view class="info">{{item.ar[0].name || item.artists[0].name}}</view>
-      <view class="album-name" wx:if="{{item.al||item.alias.length}}">  · {{item.alia[0] || item.al.name || item.alias[0]}}</view>
+      <view class="album-name" wx:if="{{item.al||item.alias.length}}">· {{item.alia[0] || item.al.name || item.alias[0]}}</view>
     </view>
   </view>
 </view>

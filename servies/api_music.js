@@ -49,3 +49,9 @@ export function getSongMenuDetail(id){
 export function getHotPlayList(){
   return OJRequest.get('/playlist/hot')
 }
+
+export function getSongDetail(ids){
+  return OJRequest.get('/song/detail',{
+    ids
+  })
+}
