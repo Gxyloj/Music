@@ -1,3 +1,4 @@
+
 function formatCount(count){
   var count = parseInt(count)
   if(count > 100000000){
@@ -9,6 +10,25 @@ function formatCount(count){
   }
 }
 
+
+// 12 -> 12
+// 5 -> 05
+function padLeftZero(time) {
+  time = time + ""
+  return ("00" + time).slice(time.length)
+}
+
+function mmss(time){
+  time = time / 1000
+  // 488s / 60 = 8.12
+  var minute = Math.floor(time / 60)
+  // 488s % 60
+  var second = Math.floor(time) % 60
+
+  return padLeftZero(minute) + ":" + padLeftZero(second)
+}
+
 module.exports = {
-  formatCount:formatCount
+  formatCount:formatCount,
+  mmss:mmss
 }

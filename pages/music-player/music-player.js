@@ -38,7 +38,7 @@ Page({
     const value = e.detail.value
     const duration = this.data.duration.slice(0, 2) * 60 + this.data.duration.slice(3) * 1
     //现在滑到多少秒
-    const currentTime = moment(duration * value * 10).format('mm:ss')
+    const currentTime = duration * value * 10
     this.setData({isSliderChanging: true, current: currentTime})
 
   },
@@ -51,7 +51,7 @@ Page({
       const currentTime = audioContext.currentTime * 1000
       if (!this.data.isSliderChanging) {
         const duration = this.data.duration.slice(0, 2) * 60 + this.data.duration.slice(3) * 1
-        this.setData({current: moment(currentTime).format('mm:ss:sss')})
+        this.setData({current: currentTime})
         const sliderValue = currentTime / duration / 10
         this.setData({sliderValue})
       }

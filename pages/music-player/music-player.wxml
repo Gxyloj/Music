@@ -1,3 +1,5 @@
+<wxs src="/utils/format.wxs" module="format"></wxs>
+
 <!--背景-->
 <image class="bg-image" mode="aspectFill" src="{{songDetail[0].al.picUrl}}"></image>
   <!--模糊-->
@@ -43,7 +45,7 @@
               value="{{sliderValue}}"
               bind:change="handleSliderChange"
               bind:changing="handleSliderChanging"></slider>
-      <view class="current">{{current}}</view>
+      <view class="current">{{format.mmss(current)}}</view>
       <view class="duration">{{duration}}</view>
     </view>
     <view class="operation">
