@@ -13,7 +13,8 @@
 </nav-bar>
 
   <!--具体内容-->
-<swiper class="content"
+<swiper wx:if="{{songDetail}}"
+        class="content"
         style="height:{{contentHeight}}px"
         bind:change="handleSwiperChange">
   <!--  歌曲页面-->
@@ -28,7 +29,7 @@
         <!--        第二行-->
         <view class="artist">
           {{songDetail[0].ar[0].name}}
-          <block wx:for="{{songDetail[0].ar}}" wx:if="{{index > 0}}">
+          <block wx:for="{{songDetail[0].ar}}" wx:if="{{index > 0}}" wx:key="name">
             <text class="artists"> · {{item.name}}</text>
           </block>
         </view>
@@ -36,11 +37,14 @@
         <view class="collection">专辑：《{{songDetail[0].alia[0] || songDetail[0].al.name}}》</view>
       </view>
     </view>
-    <view class="lyric">我是歌词</view>
+    <view class="lyric" wx:if="{{showLyric}}">我是歌词</view>
     <view class="progress">
-      <slider block-size="15"></slider>
-      <view class="current">01:22</view>
-      <view class="duration">04:33</view>
+      <slider block-size="15" selected-color="#26ce8a"
+              value="{{sliderValue}}"
+              bind:change="handleSliderChange"
+              bind:changing="handleSliderChanging"></slider>
+      <view class="current">{{current}}</view>
+      <view class="duration">{{duration}}</view>
     </view>
     <view class="operation">
       <image class="btn btn-mode" src="/assets/images/player/play_order.png"></image>

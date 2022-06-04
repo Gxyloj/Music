@@ -4,7 +4,8 @@ App({
     screenWidth:0,
     screenHeight:0,
     statusBarHeight:0,
-    menuButtonHeight:0
+    menuButtonHeight:0,
+    deviceRadio:0
   },
   onLaunch(options) {
     const info = wx.getSystemInfoSync()
@@ -12,7 +13,7 @@ App({
     this.globalData.screenHeight = info.screenHeight
     this.globalData.statusBarHeight = info.statusBarHeight
     this.globalData.menuButtonRect = wx.getMenuButtonBoundingClientRect()
-    console.log(info)
+    this.globalData.deviceRadio = info.screenHeight / info.screenWidth
   }
 
 })

@@ -55,3 +55,9 @@ export function getSongDetail(ids){
     ids
   })
 }
+
+export function getLyric(id){
+  return OJRequest.get('/lyric',{
+    id
+  })
+}
