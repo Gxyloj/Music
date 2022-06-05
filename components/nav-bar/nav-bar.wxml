@@ -7,7 +7,7 @@
       <view class="left-slot">
         <slot name="left"></slot>
       </view>
-      <view class="left-arrow">
+      <view class="left-arrow" bind:tap="handleNavigateBack">
         <image class="icon" style="width:{{menuButtonHeight - 8}}px" src="/assets/images/icons/arrow-left.png" mode="widthFix"></image>
       </view>
     </view>

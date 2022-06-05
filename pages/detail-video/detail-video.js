@@ -17,9 +17,10 @@ Page({
   },
 
   getPageData(id){
-    // getMVURL(id).then(res => {
-    //   this.setData({mvURL:res.data.data})
-    // })
+    getMVURL(id).then(res => {
+      console.log(res)
+      this.setData({mvURL:res.data.data.url})
+    })
     getMVDetail(id).then(res => {
       this.setData({mvDetail:res.data.data})
     })

@@ -52,65 +52,95 @@ page {
 /*  }*/
 /*}*/
 
-.album{
+.album {
   display: flex;
   justify-content: center;
 }
 
-.album .image{
+.album .image {
   width: 88%;
 }
 
-.info{
+.info {
   padding: 16rpx 0;
 }
 
-.info .title{
+.info .title {
   font-size: 50rpx;
   margin-bottom: 30rpx;
 }
 
-.info .source{
+.info .source {
   font-size: 28rpx;
 }
 
-.info .collection{
+.info .collection {
   margin-top: 30rpx;
 }
 
-.lyric{
+.lyric {
   display: flex;
   flex: 0.35;
   justify-content: center;
   align-items: center;
 }
 
-.progress{
+.progress {
   position: relative;
   font-size: 26rpx;
 }
 
-.progress .current,.duration{
+.progress .current, .duration {
   position: absolute;
   bottom: -8px;
 }
 
-.progress .current{
+.progress .current {
   left: 16px;
 }
-.progress .duration{
+
+.progress .duration {
   right: 18px;
 }
 
 
-.operation{
+.operation {
   display: flex;
   justify-content: space-around;
 }
 
 
-
-.btn{
+.btn {
   width: 88rpx;
   height: 88rpx;
+}
+
+/*歌词*/
+.lyric-list {
+
+}
+
+/*去除滚动条*/
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.lyric-list .item {
+  height: 35px;
+  line-height: 35px;
+  font-size: 28rpx;
+  text-align: center;
+  color: #989898;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*当前歌词*/
+.lyric-list .item.active {
+  color: #26ce8a;
+  font-size: 36rpx;
 }

@@ -15,7 +15,13 @@ Component({
     statusBarHeight:app.globalData.statusBarHeight,
     menuButtonRect:app.globalData.menuButtonRect,
   },
-  methods: {},
+  methods: {
+    handleNavigateBack(){
+      wx.navigateBack({
+        delta:1
+      })
+    }
+  },
   lifetimes: {
     ready() {
 

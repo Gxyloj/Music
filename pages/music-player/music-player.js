@@ -10,13 +10,18 @@ Page({
   data: {
     songDetail: [],
     currentPage: 0,
+    isPlay: true,
+    lyricInfos: [],
+    currentLyricIndex: 0,
+    currentLyricText: '',
     contentHeight: 0,
     infoPaddingLeft: 0,
     showLyric: true,
     sliderValue: 0,
     current: 0,
     duration: 0,
-    isSliderChanging: false
+    isSliderChanging: false,
+    lyricScrollTop: 0
   },
   //轮播图
   handleSwiperChange(e) {
@@ -43,20 +48,51 @@ Page({
 
   },
   //音频上下文监听
-  setupAudioContextListener(){
+  setupAudioContextListener() {
     audioContext.onCanplay(() => {
       audioContext.play()
     })
     audioContext.onTimeUpdate(() => {
+      //获取当前时间
       const currentTime = audioContext.currentTime * 1000
+      //如果没在滑动进度条
       if (!this.data.isSliderChanging) {
+        //修改当前时间
         const duration = this.data.duration.slice(0, 2) * 60 + this.data.duration.slice(3) * 1
         this.setData({current: currentTime})
         const sliderValue = currentTime / duration / 10
         this.setData({sliderValue})
       }
+      //根据当前时间查找歌词
+      for (let i = 0; i < this.data.lyricInfos.length; i++) {
+        //拿到每一行歌词
+        const lyricInfo = this.data.lyricInfos[i]
+        if (currentTime < lyricInfo.time) {//如果当前时间 小于 这行歌词应显示的时间
+          const currentIndex = i - 1  //拿到这一行的上一行
+          if (this.data.currentLyricIndex !== currentIndex) {
+            const currentLyricInfo = this.data.lyricInfos[currentIndex]
+            this.setData({
+              currentLyricText: currentLyricInfo,
+              currentLyricIndex: currentIndex,
+              lyricScrollTop:currentIndex * 35
+            })
+            console.log(currentLyricInfo.lyricText)
+          }
+          break;
+        }
+      }
 
     })
+  },
+  //播放暂停
+  handleState() {
+    if (audioContext.paused) {
+      audioContext.play()
+      this.setData({isPlay: true})
+    } else {
+      audioContext.pause()
+      this.setData({isPlay: false})
+    }
   },
   onLoad: function(options) {
     const id = options.id
@@ -69,9 +105,9 @@ Page({
     let lyricString = ''
     let lyrics
     getLyric(id).then(res => {
-      lyricString =  res.data.lrc.lyric
+      lyricString = res.data.lrc.lyric
       lyrics = parseLyric(lyricString)
-      console.log(lyrics)
+      this.setData({lyricInfos: lyrics})
     })
     //动态获取content高度
     const screenHeight = app.globalData.screenHeight
