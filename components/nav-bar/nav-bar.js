@@ -1,3 +1,5 @@
+import {playerStore} from "../../store/player-store";
+
 const app = getApp()
 
 Component({

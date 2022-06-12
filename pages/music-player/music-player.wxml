@@ -18,10 +18,11 @@
 <swiper wx:if="{{songDetail}}"
         class="content"
         style="height:{{contentHeight}}px"
+        current="{{currentPage}}"
         bind:change="handleSwiperChange">
   <!--  歌曲页面-->
   <swiper-item class="music">
-    <view class="album">
+    <view class="album" bind:tap="handleGoLyric">
       <image class="image" mode="widthFix" src="{{songDetail[0].al.picUrl}}"></image>
     </view>
     <view class="info" style="padding-left:{{infoPaddingLeft}}px">
@@ -36,10 +37,24 @@
           </block>
         </view>
         <!--        第三行-->
-        <view class="collection">专辑：《{{songDetail[0].alia[0] || songDetail[0].al.name}}》</view>
+        <view class="collection">专辑：{{songDetail[0].alia[0] || songDetail[0].al.name}}</view>
       </view>
     </view>
     <view class="lyric" wx:if="{{showLyric}}">{{currentLyricText.lyricText}}</view>
+    <!--    <view class="lyric" wx:if="{{showLyric}}">-->
+    <!--      <scroll-view class="lyric-list"-->
+    <!--                   style="height:{{contentHeight}}px"-->
+    <!--                   scroll-y-->
+    <!--                   scroll-top="{{lyricScrollTop}}"-->
+    <!--                   scroll-with-animation>-->
+    <!--        <block wx:for="{{lyricInfos}}" wx:key="index">-->
+    <!--          <view class="item {{currentLyricIndex === index ? 'active' : ''}}"-->
+    <!--                style="padding-top:{{index === 0 ? (contentHeight/2-80) : 0}}px;padding-bottom:{{index === lyricInfos.length - 1 ? (contentHeight/2+80) : 0 }}px">{{item.lyricText}}-->
+    <!--          </view>-->
+    <!--        </block>-->
+    <!--      </scroll-view>-->
+    <!--    </view>-->
+
     <view class="progress">
       <slider block-size="15" selected-color="#26ce8a"
               value="{{sliderValue}}"
@@ -49,19 +64,28 @@
       <view class="duration">{{duration}}</view>
     </view>
     <view class="operation">
-      <image class="btn btn-mode" src="/assets/images/player/play_order.png"></image>
-      <image class="btn btn-prev" src="/assets/images/player/play_prev.png"></image>
+      <!--      播放模式-->
+      <image class="btn btn-mode"
+             src="/assets/images/player/play_{{playModeIcon}}.png"
+             bind:tap="handleModeBtnClick"></image>
+      <!--      上一首-->
+      <image class="btn btn-prev"
+             src="/assets/images/player/play_prev.png"
+             bind:tap="handleNewSongClick" data-handle="prev"></image>
+      <!--播放/暂停-->
       <image class="btn btn-pause" src="/assets/images/player/play_pause.png"
              bind:tap="handleState"
              wx:if="{{isPlay}}">
-
       </image>
       <image class="btn btn-pause" src="/assets/images/player/play_resume.png"
              bind:tap="handleState"
              wx:elif="{{!isPlay}}">
-
       </image>
-      <image class="btn btn-next" src="/assets/images/player/play_next.png"></image>
+      <!--      下一首-->
+      <image class="btn btn-next"
+             src="/assets/images/player/play_next.png"
+             bind:tap="handleNewSongClick" data-handle="next"></image>
+      <!--      播放列表-->
       <image class="btn btn-list" src="/assets/images/player/play_music.png"></image>
     </view>
   </swiper-item>

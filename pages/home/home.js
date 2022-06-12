@@ -5,8 +5,10 @@ import {
 import {querySelectRect} from '../../utils/querySelectRect'
 import {throttle} from '../../utils/throttle'
 import rankingStore from "../../store/ranking-store";
+import {login} from "../../servies/api_login";
+import {playerStore} from "../../store/player-store";
 
-const throttleQueryRect = throttle(querySelectRect, 50)
+const throttleQueryRect = throttle(querySelectRect, 200,{trailing:true})
 
 Page({
 
@@ -66,10 +68,16 @@ Page({
     const rankingName = id === '0' ? 'newRankingList' : id === '1' ? 'originalRankingList' : 'upRankingList'
     this.navigateToDetailSongPage(rankingName)
   },
+  handleItemClickFormList(e){
+    const index = e.currentTarget.dataset.index
+    const songList = this.data.rankingList[3].songList.map(item => item.id)
+    playerStore.dispatch('AddToPlayListAction',index,songList)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
+    rankingStore.dispatch('getRankingDataAction')
     rankingStore.onState('newRankingList', this.getNewRankingList(0))
     rankingStore.onState('originalRankingList', this.getNewRankingList(1))
     rankingStore.onState('upRankingList', this.getNewRankingList(2))
@@ -91,7 +99,6 @@ Page({
       this.setData({hotSongMenu: res.data.playlists})
     })
     //获取歌曲榜单
-    rankingStore.dispatch('getRankingDataAction')
   },
 
   /**

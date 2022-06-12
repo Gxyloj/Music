@@ -39,8 +39,7 @@ page {
   flex-direction: column;
   justify-content: space-between;
   width: 100vw;
-  padding: 40rpx 20rpx;
-  padding-bottom: 48rpx;
+  padding: 40rpx 20rpx 48rpx;
   box-sizing: border-box;
 }
 

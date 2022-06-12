@@ -42,16 +42,16 @@
           "scene": null
         },
         {
-          "name": "歌曲播放",
+          "name": "",
           "pathName": "pages/music-player/music-player",
-          "query": "id=1489040856",
+          "query": "id=1901371647",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "",
+          "name": "歌曲播放",
           "pathName": "pages/music-player/music-player",
-          "query": "id=1901371647",
+          "query": "id=1489040856",
           "launchMode": "default",
           "scene": null
         }
