@@ -1,5 +1,5 @@
 <wxs src="/utils/format.wxs" module="format"></wxs>
-
+<!--<van-toast id="van-toast" :position="top"/>-->
   <!--背景-->
 <image class="bg-image" mode="aspectFill" src="{{songDetail[0].al.picUrl}}"></image>
   <!--模糊-->

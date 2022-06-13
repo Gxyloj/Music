@@ -1,5 +1,6 @@
 import rankingStore from "../../store/ranking-store";
 import {getPersonalizedNewSong, getSongMenuDetail} from "../../servies/api_music";
+import {playerStore} from "../../store/player-store";
 
 Page({
   data: {
@@ -9,6 +10,12 @@ Page({
   },
   getRankingListHandler(res) {
     this.setData({songsList: res})
+  },
+  //歌曲点击
+  handleItemClickFormList(e){
+    const index = e.currentTarget.dataset.index
+    const songList = this.data.songsList.tracks.map(item => item.id)
+    playerStore.dispatch('AddToPlayListAction',index,songList)
   },
   onLoad: function(options) {
     const type = options.type

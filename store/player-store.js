@@ -2,6 +2,7 @@ import {HYEventStore} from "hy-event-store";
 import {getLyric, getSongDetail} from "../servies/api_music";
 import moment from "moment";
 import {parseLyric} from "../utils/parse-lyric";
+import Toast from "../miniprogram_npm/@vant/weapp/toast/toast";
 
 const audioContext = wx.createInnerAudioContext()
 
@@ -63,7 +64,6 @@ const playerStore = new HYEventStore({
         ctx.isPlay = true
       })
       audioContext.onTimeUpdate(() => {
-        console.log('---------')
         //获取当前时间
         const currentTime = audioContext.currentTime * 1000
         if (!ctx.duration.length) return
@@ -120,39 +120,119 @@ const playerStore = new HYEventStore({
     },
     //上一首下一首
     handleNewSongAction(ctx, handle) {
+      let id = 0
       if (handle === 'prev') {
-        //如果已经是第一首，则不能再上一首
-        if(ctx.playListIndex === 0){
-          console.log('没有上一首了')
-          audioContext.seek(0)
-          //seek以后会触发不了onTimeUpdate事件 重新读取一下歌曲状态
-          audioContext.play()
-          setTimeout(() => {
-            console.log(audioContext.paused)
-          }, 100)
-          return
+        console.log(ctx.playModeIndex)
+        //判断播放模式 0默认 1单曲 2随机
+        switch (ctx.playModeIndex){
+          case 0:
+            //如果已经是第一首，则不能再上一首
+            if(ctx.playListIndex === 0){
+              wx.showToast({
+                title:'没有上一首了',
+                icon:'none'
+              })
+              // Toast('没有上一首了')
+              audioContext.seek(0)
+              //seek以后会触发不了onTimeUpdate事件 重新读取一下歌曲状态
+              audioContext.play()
+              setTimeout(() => {
+                const update = audioContext.paused
+              }, 100)
+              return
+            }
+            //否则 id为列表内的上一首
+            id = ctx.playListSong[ctx.playListIndex - 1]
+            this.dispatch('playMusicWithIDAction', id)
+            this.setState('playListIndex', ctx.playListIndex - 1)
+            break
+          case 1:
+            audioContext.seek(0)
+            //seek以后会触发不了onTimeUpdate事件 重新读取一下歌曲状态
+            audioContext.play()
+            setTimeout(() => {
+              const update = audioContext.paused
+            }, 100)
+            break
+          case 2:
+            //如果已经是第一首，则不能再上一首
+            if(ctx.playListIndex === 0){
+              wx.showToast({
+                title:'没有上一首了',
+                icon:'none'
+              })
+              // Toast('没有上一首了')
+              audioContext.seek(0)
+              //seek以后会触发不了onTimeUpdate事件 重新读取一下歌曲状态
+              audioContext.play()
+              setTimeout(() => {
+                const update = audioContext.paused
+              }, 100)
+              return
+            }
+            //否则 id为列表内的上一首
+            let randomIndex = Math.floor(Math.random() * ctx.playListSong.length)
+            id = ctx.playListSong[randomIndex]
+            this.dispatch('playMusicWithIDAction', id)
+            this.setState('playListIndex', randomIndex)
+            break
         }
-        //否则 id为列表内的上一首
-        let id = ctx.playListSong[ctx.playListIndex - 1]
-        this.dispatch('playMusicWithIDAction', id)
-        this.setState('playListIndex', ctx.playListIndex - 1)
+
       } else if (handle === 'next') {
-        //id为列表内的下一首
-        let id = ctx.playListSong[ctx.playListIndex + 1]
-        //如果已经是最后一首 return
-        if (ctx.playListIndex === ctx.playListSong.length - 1) {
-          id = ctx.playListSong[ctx.playListSong.length - 1]
-          console.log('没有下一首了')
-          audioContext.seek(0)
-          //seek以后会触发不了onTimeUpdate事件 重新读取一下歌曲状态
-          audioContext.play()
-          setTimeout(() => {
-            console.log(audioContext.paused)
-          }, 100)
-          return
+        //判断播放模式
+        switch (ctx.playModeIndex){
+          case 0:
+            //如果已经是最后一首 return
+            if (ctx.playListIndex === ctx.playListSong.length - 1) {
+              wx.showToast({
+                title:'没有下一首了',
+                icon:'none'
+              })
+              audioContext.seek(0)
+              //seek以后会触发不了onTimeUpdate事件 重新读取一下歌曲状态
+              audioContext.play()
+              setTimeout(() => {
+                audioContext.paused
+              }, 100)
+              return
+            }
+            //id为列表内的下一首
+            id = ctx.playListSong[ctx.playListIndex + 1]
+            this.dispatch('playMusicWithIDAction', id)
+            this.setState('playListIndex', ctx.playListIndex + 1)
+            break
+          case 1:
+            audioContext.seek(0)
+            //seek以后会触发不了onTimeUpdate事件 重新读取一下歌曲状态
+            audioContext.play()
+            setTimeout(() => {
+              const update = audioContext.paused
+            }, 100)
+            break
+          case 2:
+            //如果已经是第一首，则不能再上一首
+            if(ctx.playListIndex === 0){
+              wx.showToast({
+                title:'没有上一首了',
+                icon:'none'
+              })
+              // Toast('没有上一首了')
+              audioContext.seek(0)
+              //seek以后会触发不了onTimeUpdate事件 重新读取一下歌曲状态
+              audioContext.play()
+              setTimeout(() => {
+                const update = audioContext.paused
+              }, 100)
+              return
+            }
+            //否则 id为列表内的上一首
+            let randomIndex = Math.floor(Math.random() * ctx.playListSong.length)
+            id = ctx.playListSong[randomIndex]
+            this.dispatch('playMusicWithIDAction', id)
+            this.setState('playListIndex', randomIndex)
+            break
         }
-        this.dispatch('playMusicWithIDAction', id)
-        this.setState('playListIndex', ctx.playListIndex + 1)
+
       }
     }
   }
