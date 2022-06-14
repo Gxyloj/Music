@@ -22,6 +22,7 @@ Component({
       wx.navigateBack({
         delta:1
       })
+
     }
   },
   lifetimes: {

@@ -18,6 +18,7 @@ const playerStore = new HYEventStore({
     currentLyricText: '',//歌词文本
     playModeIndex: 0, //0 顺序播放 1 单曲循环 2随机播放
     playListSong: [], //播放列表
+    playListSongName: [], //列表歌曲名
     playListIndex: 0,
     testArray: []//索引
 
@@ -104,19 +105,30 @@ const playerStore = new HYEventStore({
       ctx.isPlay ? audioContext.play() : audioContext.pause()
     },
     //添加到播放列表
-    AddToPlayListAction(ctx, index, playList) {
+    AddToPlayListAction(ctx, index, playList, name) {
       if (ctx.playListSong.length === 0) {
         //如果播放列表为空，则直接添加到播放列表
         this.setState('playListSong', playList)
+        //处理播放列表展示的数据
+        const playListSongName = []
+        name.forEach((name,index) => {
+          playListSongName.push({id: playList[index], name: name})
+        })
+        this.setState('playListSongName', playListSongName)
+        //保存当前播放歌曲的index
         this.setState('playListIndex', index)
       } else {
         // if (playList[index] === ctx.id) return
         //如果播放列表不为空，则保留列表前半部分，添加到最后一项
+        console.log(index)
         const playListSong = ctx.playListSong.slice(0, ctx.playListIndex + 1)
         this.setState('playListSong', [...playListSong, playList[index]])
+        const playListSongName = ctx.playListSongName.slice(0, ctx.playListIndex + 1)
+        playListSongName.push({id: playList[index], name: name[index]})
+        this.setState('playListSongName', playListSongName)
         this.setState('playListIndex', ctx.playListSong.length - 1)
       }
-      console.log(ctx.playListSong, ctx.playListIndex)
+      console.log(ctx.playListSong, ctx.playListSongName, ctx.playListIndex)
     },
     //上一首下一首
     handleNewSongAction(ctx, handle) {
@@ -124,13 +136,13 @@ const playerStore = new HYEventStore({
       if (handle === 'prev') {
         console.log(ctx.playModeIndex)
         //判断播放模式 0默认 1单曲 2随机
-        switch (ctx.playModeIndex){
+        switch (ctx.playModeIndex) {
           case 0:
             //如果已经是第一首，则不能再上一首
-            if(ctx.playListIndex === 0){
+            if (ctx.playListIndex === 0) {
               wx.showToast({
-                title:'没有上一首了',
-                icon:'none'
+                title: '没有上一首了',
+                icon: 'none'
               })
               // Toast('没有上一首了')
               audioContext.seek(0)
@@ -156,10 +168,10 @@ const playerStore = new HYEventStore({
             break
           case 2:
             //如果已经是第一首，则不能再上一首
-            if(ctx.playListIndex === 0){
+            if (ctx.playListIndex === 0) {
               wx.showToast({
-                title:'没有上一首了',
-                icon:'none'
+                title: '没有上一首了',
+                icon: 'none'
               })
               // Toast('没有上一首了')
               audioContext.seek(0)
@@ -180,13 +192,13 @@ const playerStore = new HYEventStore({
 
       } else if (handle === 'next') {
         //判断播放模式
-        switch (ctx.playModeIndex){
+        switch (ctx.playModeIndex) {
           case 0:
             //如果已经是最后一首 return
             if (ctx.playListIndex === ctx.playListSong.length - 1) {
               wx.showToast({
-                title:'没有下一首了',
-                icon:'none'
+                title: '没有下一首了',
+                icon: 'none'
               })
               audioContext.seek(0)
               //seek以后会触发不了onTimeUpdate事件 重新读取一下歌曲状态
@@ -211,10 +223,10 @@ const playerStore = new HYEventStore({
             break
           case 2:
             //如果已经是第一首，则不能再上一首
-            if(ctx.playListIndex === 0){
+            if (ctx.playListIndex === 0) {
               wx.showToast({
-                title:'没有上一首了',
-                icon:'none'
+                title: '没有上一首了',
+                icon: 'none'
               })
               // Toast('没有上一首了')
               audioContext.seek(0)

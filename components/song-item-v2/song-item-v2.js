@@ -15,10 +15,16 @@ Component({
   methods: {
     handleSongItemClick(e) {
       const id = e.currentTarget.dataset.id
-      playerStore.dispatch('playMusicWithIDAction',id)
+      playerStore.dispatch('playMusicWithIDAction', id)
+      const index = this.properties.index
+      playerStore.setState('playListIndex',index)
+      const pages = getCurrentPages()
+      if (pages[pages.length - 1].route === 'pages/music-player/music-player')
+        return
       wx.navigateTo({
-        url:`/pages/music-player/music-player?id=${id}`
+        url: `/pages/music-player/music-player?id=${id}`
       })
+
     }
   }
 });

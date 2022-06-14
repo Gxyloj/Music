@@ -1,5 +1,5 @@
 <wxs src="/utils/format.wxs" module="format"></wxs>
-<!--<van-toast id="van-toast" :position="top"/>-->
+  <!--<van-toast id="van-toast" :position="top"/>-->
   <!--背景-->
 <image class="bg-image" mode="aspectFill" src="{{songDetail[0].al.picUrl}}"></image>
   <!--模糊-->
@@ -86,7 +86,10 @@
              src="/assets/images/player/play_next.png"
              bind:tap="handleNewSongClick" data-handle="next"></image>
       <!--      播放列表-->
-      <image class="btn btn-list" src="/assets/images/player/play_music.png"></image>
+      <image class="btn btn-list"
+             src="/assets/images/player/play_music.png"
+             bind:tap="handleShowPopup"></image>
+
     </view>
   </swiper-item>
   <swiper-item class="lyric">
@@ -103,3 +106,24 @@
     </scroll-view>
   </swiper-item>
 </swiper>
+
+  <!--歌曲列表弹出层-->
+<page-container class="popup"
+                show="{{showPopup}}"
+                position="bottom"
+                duration="300"
+                round="true"
+                bind:enter="abc"
+                bind:afterleave="handleClosePopup">
+  <view class="popup-container">
+    <scroll-view scroll-y style="height:35vh">
+      <block wx:for="{{playList}}" wx:key="index">
+        <song-item-v2 item="{{item}}"
+                      index="{{index}}"
+                      bind:tap="handleChangeMusic"
+                      data-id="{{item.id}}"></song-item-v2>
+      </block>
+    </scroll-view>
+  </view>
+</page-container>
+

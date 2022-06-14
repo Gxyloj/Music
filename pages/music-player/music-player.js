@@ -25,8 +25,9 @@ Page({
     isSliderChanging: false,
     lyricScrollTop: 0,
     playModeIndex:0, //0 顺序播放 1 单曲循环 2随机播放
-    playModeIcon:'order'
-
+    playModeIcon:'order',
+    showPopup:false,
+    playList:[] //播放列表
   },
   //监听player-store 即歌曲数据信息的变化
   setupPlayerStoreListener() {
@@ -96,9 +97,23 @@ Page({
     this.setData({isSliderChanging: true, current: currentTime})
 
   },
+  //上一首下一首
   handleNewSongClick(e){
     const handle = e.currentTarget.dataset.handle
     playerStore.dispatch('handleNewSongAction',handle)
+  },
+  //歌曲列表弹出层
+  handleShowPopup(){
+    this.setData({showPopup:!this.data.showPopup})
+  },
+  handleClosePopup(){
+    if (this.data.showPopup === false) return
+    this.setData({showPopup:!this.data.showPopup})
+  },
+  //从播放列表切换歌曲
+  handleChangeMusic(e){
+    const id = e.currentTarget.dataset.id
+    this.setData({showPopup:!this.data.showPopup})
   },
   //音频上下文监听
   // setupAudioContextListener() {
@@ -187,6 +202,9 @@ Page({
     querySelectRect('.image').then(res => {
       const infoPaddingLeft = res[0].left - 10
       this.setData({infoPaddingLeft})
+    })
+    playerStore.onState('playListSongName',playList => {
+      this.setData({playList})
     })
 
     // //歌曲播放

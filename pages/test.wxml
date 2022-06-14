@@ -1,0 +1,21 @@
+<!--歌曲列表弹出层-->
+<button bind:tap="showPopup">111</button>
+
+<swiper>
+  <swiper-item>111</swiper-item>
+  <swiper-item>222</swiper-item>
+</swiper>
+
+<page-container class="popup"
+                show="{{showPopup}}"
+                position="bottom"
+                round="true">
+  <view><text>123</text></view>
+  <view><text>123</text></view>
+  <view><text>123</text></view>
+  <view><text>123</text></view>
+  <view><text>123</text></view>
+  <view><text>123</text></view>
+  <view><text>123</text></view>
+  <view><text>123</text></view>
+</page-container>

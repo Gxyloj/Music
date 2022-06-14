@@ -3,6 +3,8 @@
   "navigationBarTextStyle": "white",
   "usingComponents": {
     "nav-bar": "/components/nav-bar/nav-bar",
-    "van-toast": "@vant/weapp/toast/index"
+    "van-toast": "@vant/weapp/toast/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "song-item-v2": "/components/song-item-v2/song-item-v2"
   }
 }

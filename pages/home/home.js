@@ -71,7 +71,8 @@ Page({
   handleItemClickFormList(e){
     const index = e.currentTarget.dataset.index
     const songList = this.data.rankingList[3].songList.map(item => item.id)
-    playerStore.dispatch('AddToPlayListAction',index,songList)
+    const name = this.data.rankingList[3].songList.map(item => item.name)
+    playerStore.dispatch('AddToPlayListAction',index,songList,name)
   },
   /**
    * 生命周期函数--监听页面加载

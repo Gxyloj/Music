@@ -15,7 +15,9 @@ Page({
   handleItemClickFormList(e){
     const index = e.currentTarget.dataset.index
     const songList = this.data.songsList.tracks.map(item => item.id)
-    playerStore.dispatch('AddToPlayListAction',index,songList)
+    const name = this.data.songsList.tracks.map(item => item.name)
+    playerStore.dispatch('AddToPlayListAction',index,songList,name)
+    //其他列表index不对
   },
   onLoad: function(options) {
     const type = options.type
