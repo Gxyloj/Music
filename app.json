@@ -15,9 +15,10 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fafafa",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "Music",
     "navigationBarTextStyle": "black"
   },
+  "requiredBackgroundModes": ["audio"],
   "tabBar": {
     "list": [
       {

@@ -4,7 +4,7 @@ import moment from "moment";
 import {parseLyric} from "../utils/parse-lyric";
 import Toast from "../miniprogram_npm/@vant/weapp/toast/toast";
 
-const audioContext = wx.createInnerAudioContext()
+const audioContext = wx.getBackgroundAudioManager()
 
 const playerStore = new HYEventStore({
   state: {
@@ -42,6 +42,7 @@ const playerStore = new HYEventStore({
         res.data.songs[0].dt = moment(res.data.songs[0].dt).format('mm:ss')
         ctx.currentSongDetail = res.data.songs
         ctx.duration = res.data.songs[0].dt
+        audioContext.title = res.data.songs[0].name
       })
       //请求歌词
       let lyricString = ''
@@ -55,6 +56,7 @@ const playerStore = new HYEventStore({
       //歌曲播放
       audioContext.stop()
       audioContext.src = `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+      audioContext.title = id
       audioContext.autoplay = true
       //监听歌曲的状态
       this.dispatch('setupAudioContextListener')
@@ -98,6 +100,17 @@ const playerStore = new HYEventStore({
             break;
           }
         }
+        audioContext.onEnded(() => {
+          setTimeout(() => {
+            this.dispatch('handleNewSongAction','prev')
+          },500)
+        })
+        audioContext.onPlay(() => {
+          ctx.isPlay = true
+        })
+        audioContext.onPause(() => {
+          ctx.isPlay = false
+        })
       })
     },
     changeMusicPlayStatusAction(ctx) {

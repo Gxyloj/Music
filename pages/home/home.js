@@ -8,11 +8,11 @@ import rankingStore from "../../store/ranking-store";
 import {login} from "../../servies/api_login";
 import {playerStore} from "../../store/player-store";
 
-const throttleQueryRect = throttle(querySelectRect, 200,{trailing:true})
+const throttleQueryRect = throttle(querySelectRect, 200, {trailing: true})
 
 Page({
 
-   /**
+  /**
    * 页面的初始数据
    */
   data: {
@@ -21,7 +21,10 @@ Page({
     personalizedNewList: {},
     recommendSongMenu: [],
     hotSongMenu: [],
-    rankingList: {0: {}, 1: {}, 2: {},3:{}}
+    rankingList: {0: {}, 1: {}, 2: {}, 3: {}},
+    currentSongDetail: {},
+    isPlay: true,
+    playAnimState:'paused'
   },
 
   handleSearchInput() {
@@ -55,9 +58,9 @@ Page({
 
 
   },
-  navigateToDetailSongPage(rankingName){
+  navigateToDetailSongPage(rankingName) {
     wx.navigateTo({
-      url:`/pages/detail-songs/detail-songs?rankingName=${rankingName}&type=ranking`
+      url: `/pages/detail-songs/detail-songs?rankingName=${rankingName}&type=ranking`
     })
   },
   handleMoreClick() {
@@ -68,16 +71,37 @@ Page({
     const rankingName = id === '0' ? 'newRankingList' : id === '1' ? 'originalRankingList' : 'upRankingList'
     this.navigateToDetailSongPage(rankingName)
   },
-  handleItemClickFormList(e){
+  handleItemClickFormList(e) {
     const index = e.currentTarget.dataset.index
     const songList = this.data.rankingList[3].songList.map(item => item.id)
     const name = this.data.rankingList[3].songList.map(item => item.name)
-    playerStore.dispatch('AddToPlayListAction',index,songList,name)
+    playerStore.dispatch('AddToPlayListAction', index, songList, name)
+  },
+  setupPlayerStoreListener() {
+    playerStore.onStates(['currentSongDetail', 'isPlay'],
+      ({currentSongDetail, isPlay}) => {
+        if (currentSongDetail) this.setData({currentSongDetail})
+        if (isPlay !== undefined) this.setData({isPlay,
+          playAnimState:isPlay ? 'running' : 'paused'})
+      })
+
+  },
+  handleState(e) {
+    playerStore.dispatch('changeMusicPlayStatusAction')
+  },
+  handlePlayBarClick(){
+    wx.navigateTo({
+      url:'/pages/music-player/music-player'
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function(options) {
+
+    // playerStore.dispatch('playMusicWithIDAction', 1489040856)
+
+
     rankingStore.dispatch('getRankingDataAction')
     rankingStore.onState('newRankingList', this.getNewRankingList(0))
     rankingStore.onState('originalRankingList', this.getNewRankingList(1))
@@ -100,6 +124,8 @@ Page({
       this.setData({hotSongMenu: res.data.playlists})
     })
     //获取歌曲榜单
+    //监听当前歌曲
+    this.setupPlayerStoreListener()
   },
 
   /**
