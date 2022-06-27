@@ -36,7 +36,7 @@ export function getAllTopList(){
 export function getRanking(id){
   return OJRequest.get('/playlist/detail',{
     id
-  })
+  },true)
 }
 //获取歌单详情数据
 export function getSongMenuDetail(id){
